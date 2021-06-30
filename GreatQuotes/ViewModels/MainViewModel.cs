@@ -9,12 +9,24 @@ namespace GreatQuotes.ViewModels
     public class MainViewModel : SimpleViewModel
     {
         public IList<QuoteViewModel> Quotes { get; private set; }
-
+        
         public MainViewModel()
         {
             Quotes = new ObservableCollection<QuoteViewModel>(
                 QuoteManager.Load()
                             .Select(q => new QuoteViewModel(q)));
+        }
+
+        QuoteViewModel selectedQuote;
+        public QuoteViewModel SelectedQuote {
+            get
+            {
+                return selectedQuote;
+            }
+            set
+            {
+                SetPropertyValue(ref selectedQuote, value);
+            }
         }
     }
 }
